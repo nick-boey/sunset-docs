@@ -1,0 +1,271 @@
+{
+  "source_base_path": "C:/Users/nboey/Documents/src/Sunset/sunset-docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/design-framework.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/design-framework.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/developer-documentation.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/developer-documentation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/grammar.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/grammar.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/repositories.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/repositories.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/dev/syntax-highlighting.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/syntax-highlighting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/dev/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/dev/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/dev/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/conditionals.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/conditionals.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/element-inheritance.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/element-inheritance.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/elements.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/elements.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/functions-on-collections.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/functions-on-collections.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/options.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/options.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/quantities.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/quantities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/reporting.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/reporting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/user/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/user/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/units.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/units.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/user-guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/user-guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/user/variables.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/user/variables.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

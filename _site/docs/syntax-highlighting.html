@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Syntax highlighting | sunset-docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Syntax highlighting | sunset-docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="sunset-docs">
+            sunset-docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="syntax-highlighting">Syntax highlighting</h1>
+
+<p>The following code has been written for the <a href="https://microsoft.github.io/monaco-editor">Monaco editor</a> to allow syntax highlighting specifically for the Sunset Language.</p>
+<p>To see it in action, go to <a href="https://microsoft.github.io/monaco-editor/monarch.html">the Monarch page</a>.</p>
+<blockquote>
+<p>[!NOTE] This needs to be updated to take into account the new <a href="grammar.html">grammar</a>.</p>
+</blockquote>
+<pre><code class="lang-javascript">// Used in https://microsoft.github.io/monaco-editor/monarch.html for code coloring
+
+return {
+  defaultToken: &quot;invalid&quot;,
+
+  units: [
+    &quot;kg&quot;,
+    &quot;ug&quot;,
+    &quot;g&quot;,
+    &quot;T&quot;,
+    &quot;m&quot;,
+    &quot;nm&quot;,
+    &quot;um&quot;,
+    &quot;mm&quot;,
+    &quot;km&quot;,
+    &quot;s&quot;,
+    &quot;ms&quot;,
+    &quot;min&quot;,
+    &quot;hr&quot;,
+    &quot;day&quot;,
+    &quot;month&quot;,
+    &quot;year&quot;,
+    &quot;rad&quot;,
+    &quot;deg&quot;,
+    &quot;Pa&quot;,
+    &quot;kPa&quot;,
+    &quot;MPa&quot;,
+    &quot;GPa&quot;,
+    &quot;N&quot;,
+    &quot;kN&quot;,
+    &quot;MN&quot;,
+  ],
+
+  operators: [
+    &quot;=&quot;,
+    &quot;*&quot;,
+    &quot;+&quot;,
+    &quot;-&quot;,
+    &quot;/&quot;,
+  ],
+
+  brackets: [
+    { open: &quot;{&quot;, close: &quot;}&quot;, token: &quot;delimiter.curly&quot; },
+    { open: &quot;[&quot;, close: &quot;]&quot;, token: &quot;delimiter.bracket&quot; },
+    { open: &quot;(&quot;, close: &quot;)&quot;, token: &quot;delimiter.parenthesis&quot; },
+    { open: &quot;&lt;&quot;, close: &quot;&gt;&quot;, token: &quot;delimiter.angle&quot; },
+  ],
+
+  tokenizer: {
+    root: [
+      { include: &quot;@whitespace&quot; },
+      { include: &quot;@numbers&quot; },
+
+      // Units
+      // TODO: Work out how to pick out only valid units
+      [/\[\w*\]/, &quot;tag&quot;],
+
+      // Symbol shorthand
+      // TODO: Work out how to allow ^ and {} in symbol names
+      // @symbol
+      [/@[a-zA-Z]\w*/, &quot;type&quot;],
+      // &lt;symbol&gt;
+      [/&lt;(\\?\w*\s?)*&gt;/, &quot;type&quot;],
+
+      // Reference shorthand
+      // {reference}
+      [/{.*}/, &quot;regexp&quot;],
+
+      // Brackets
+      [/[&lt;&gt;{}\[\]()]/, &quot;@brackets&quot;],
+
+      // Operators
+      [/[=+-/*]/, &quot;tag&quot;],
+
+      // Keywords
+      [/[a-zA-Z]\w*/, {
+        cases: {
+          &quot;@units&quot;: &quot;keyword&quot;,
+          &quot;@default&quot;: &quot;identifier&quot;,
+        },
+      }],
+    ],
+
+    // Deal with white space, including single and multi-line comments
+    whitespace: [
+      [/\s+/, &quot;white&quot;],
+      [/(^#{2}.*$)/, &quot;comment.doc&quot;],
+      [/(^#.*$)/, &quot;comment&quot;],
+      [/(^s:.*$)/, &quot;type&quot;],
+      [/(^d:.*$)/, &quot;string&quot;],
+      [/(^r:.*$)/, &quot;regexp&quot;],
+      [/('''.*''')|(&quot;&quot;&quot;.*&quot;&quot;&quot;)/, &quot;string&quot;],
+    ],
+
+    // Recognize hex, negatives, decimals, imaginaries, longs, and scientific notation
+    numbers: [
+      [/-?0x([abcdef]|[ABCDEF]|\d)+[lL]?/, &quot;number.hex&quot;],
+      [/-?(\d*\.)?\d+([eE][+\-]?\d+)?[jJ]?[lL]?/, &quot;number&quot;],
+    ],
+  },
+};
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>An example script to be used for testing can be found below. Refer to the <a href="language-description.md">language description</a> for more examples.</p>
+<pre><code>## #### Plate section modulus
+# The two &quot;##&quot;s at the beginning of the comment above is used to signal that it will be included in the report.
+# The &quot;#### &quot; following it means that a level 4 heading will be added as per standard Markdown.
+# This line and the two lines above will not be included in the report as they begin with only a single #. 
+
+## Calculate the **plastic** section modulus of the plate.
+# The **plastic** is Markdown for &quot;make 'plastic' bold&quot;.
+
+@b = 150 [mm]
+    d: Width of the plate.
+@t = 10 [mm]
+    d: Thickness of the plate.
+    
+plasticDenominator = 4                      # This variable will not be reported as it does not have a symbol defined
+
+@Z_p {Example reference} = b * t ^ 2 / plasticDenominator
+    d: Plastic section modulus.
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

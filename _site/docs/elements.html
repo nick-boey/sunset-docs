@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Elements | sunset-docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Elements | sunset-docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="sunset-docs">
+            sunset-docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="elements">Elements</h1>
+
+<h2 id="defining-elements">Defining elements</h2>
+<p>Elements are groups of expressions. Their definition consists of a name, one or
+many input variables and their default values and a series of expressions. The inputs are defined in an <code>inputs:</code> section and the calculations are defined in a <code>calculations:</code> section.</p>
+<p>The tabs are included for readability but are not strictly required.</p>
+<p>For example, a <code>PadFooting</code> element may be as below.</p>
+<pre><code>PadFooting:
+    inputs:
+        Width &lt;w&gt; = 1199 {mm} &quot;Width of the footing&quot;
+        Length &lt;l&gt; = 1599 {mm} &quot;Length of the footing&quot;
+        Depth &lt;d&gt; = 799 {mm} &quot;Depth of the footing&quot;
+   
+    calculations: 
+        BearingArea &lt;A_bearing&gt; = w * l 
+            d: Bearing area of the footing on the ground
+            
+        Volume &lt;V&gt; = w * l * d
+            d: Volume of the footing
+</code></pre>
+<p>The default value of an input variable must be a constant or an element instantiated with constant parameters. As all elements have default values, all instantiated elements can be treated as constants.</p>
+<h2 id="instantiating-elements">Instantiating elements</h2>
+<p>Elements may be instantiated using default values only, with all parameters entered or with named parameters only and the remaining values as default.</p>
+<pre><code>PadFootingDefault = PadFooting() # 1199x1600x800 footing
+PadFootingAll = PadFooting(1399 {mm}, 2400 {mm}, 900 {mm}) # 1400x2400x900 footing
+PadFootingNamed = PadFooting(Width: 1499 {mm}) # 1500x1600x800 footing
+</code></pre>
+<h2 id="conditional-execution-of-element-calculations">Conditional execution of element calculations</h2>
+<p>To conditionally execute calculations with an element, <code>branch</code> elements can be created.</p>
+<p>This allows elements to dynamically recast themselves to a child element based on certain parameters within them.</p>
+<p>Examples:</p>
+<ul>
+<li>Shear behaviour of beam sections</li>
+<li></li>
+</ul>
+<blockquote>
+<p>[!NOTE] This may cause quite a lot of unexpected behaviour. Consider the difference between <code>branch</code> elements and inherited elements. If using inherited elements only, it may be necessary to prevent overrides of functions and the creation of new inputs in inherited elements (could result in too many rules for the user). This may be described by the Liskov Substitution Principle?</p>
+<p>One behaviour we have already used is with <code>if</code> statements, where the definition of functions changes depending on the output of another function. Can something similar be used for larger branching behaviour that allows code to be separated into different elements and files?</p>
+<pre><code>ElementA {
+  inputs {
+      X = 35 {mm}
+  }
+
+  calculations {
+      Y = 45 {mm}
+  }
+}
+</code></pre>
+</blockquote>
+<blockquote>
+<p>[!NOTE] Consider whether we should allow for conditional branches of execution within an element. For example, if a certain thing is true, do all of these calculations and if not don't do them.</p>
+<p>There may be some benefit to confining this for the purpose of readability and type checking, and using some form of sub-element behaviour if the behaviour is particularly hard to manage.</p>
+<p>As an example, think of slender vs. stocky concrete columns. Perhaps a <code>this</code> keyword could be used to reroute a particular element down to an inherited element if there are a lot of calculations that don't apply? Then some type checking can be done if necessary.</p>
+<pre><code>Column:
+  inputs:
+      Slenderness = 20
+  
+  this = if (Slenderness &gt; 20: StockyColumn) else (SlenderColumn)
+</code></pre>
+<p>Essentially use an <code>if</code> statement, where the element itself can be assigned as a child element.</p>
+<p>Consider how this might work with overridden behaviours - this may be starting to become needlessly complex.
+Perhaps there is something to be said about partial classes that continue on after the first class is reassigned?
+Sometimes you want to have common behaviour that uses the results of a particular class. Perhaps the best thing to do then is to be able to pass all of the inputs into another class at once</p>
+<pre><code>Column:
+  inputs:
+      Slenderness = 20
+  
+  calculations:
+      ColumnBehaviour = if (Slenderness &gt; 20): StockyColumn(inputs) else: SlenderColumn(inputs)
+</code></pre>
+<p>This would only work if <code>StockyColumn</code> derives from <code>Column</code> only and doesn't introduce any additional inputs or other behaviours (otherwise you would end up with some uncontrolled default values). I think we just need to call this a partial element. You would almost never want to pass in</p>
+<pre><code>Column branch StockyColumn:
+  A =
+</code></pre>
+<p>What about something like CHS vs UB shear behaviour in steel? There may just be a need for including partial behaviour into an element.</p>
+<pre><code>Beam:
+  ...
+  match (Section == CHSSection): CHSBeam
+
+Beam branch CHSBeam:
+  # Just continues on calculations from the previous beam
+</code></pre>
+<p>Perhaps some of it is just:</p>
+<pre><code>match (Section):
+  is CHSSection:
+      # Calculations for CHS beam
+      X = CHSCalculationResultX
+      Y = CHSCalculationResultY
+  is UBSection:
+      # Calculations for UB beam
+      X = UBCalculationResultX
+      Y = UBCalculationResultY
+</code></pre>
+<p>And the compiler picks up if there are any dependencies on if branches that aren't common between all branches of the if statement. This is equivalent to:
+X =
+if (Section is CHSSection): CHSCalculationResultX
+else if (Section is UBSection): UBCalculationResultX
+Y =
+if (Section is CHSSection): CHSCalculationResultY
+else if (Section is UBSection): UBCalculationResultY</p>
+<p>A private modifier may be required here such that stronger type checking is imposed - i.e. all public calculations must be duplicated between the different match sections.</p>
+<p>The ability of an element to dynamically cast itself to a different element makes some sense - this way a <code>Column</code> instantiated with stocky properties is equivalent to a StockyColumn. That said there's not much point in doing this as one wouldn't want to instantiate a StockyColumn with regular <code>SlenderColumn</code> properties and create a logical error.</p>
+<p>Perhaps the best thing to do here is to treat branches instantiated with different behaviours as abstract types using a <code>branch</code> keyword as above. This should resolve itself to a <code>match</code> statement which then resolves to multiple <code>if</code> statements. Type checking is undertaken.</p>
+<p>This precludes the use of multiple inheritance, perhaps we should just copy the C# way of doing things and use single inheritance with multiple interfaces.</p>
+</blockquote>
+<h2 id="anonymous-elements">Anonymous elements</h2>
+<p>Anonymous elements group variables with dynamically generated inputs.</p>
+<p>To do this, create a new variable with an unused element name and the <code>.</code> operator. This will create an anonymous element that is nested within the current element.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

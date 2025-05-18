@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Grammar reference | sunset-docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Grammar reference | sunset-docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="sunset-docs">
+            sunset-docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="grammar-reference">Grammar reference</h1>
+
+<p>This describes the grammar using an Extended Backus-Naur Form syntax.</p>
+<p>By default rules skip spaces but not new lines. Rules in ALLCAPS do not skip spaces.</p>
+<h2 id="grammar-syntax">Grammar syntax</h2>
+<pre><code class="lang-ebnf">() is a grouping
+&quot;&quot; string literals
+... is a range
+| options
+? is zero or one
++ is one or more
+* is zero or more
+</code></pre>
+<h2 id="declarations">Declarations</h2>
+<p>The key statements that define create new identifiers.</p>
+<pre><code class="lang-ebnf">elementFile               -&gt; elementDeclaration* ;
+scriptFile                -&gt; ( ifStatement | variableAssignment )* ;
+
+elementDeclaration        -&gt; IDENTIFIER (&quot;(&quot; IDENTIFIER &quot;)&quot;)? &quot;:&quot; NEWLINE
+                            &quot;inputs:&quot; NEWLINE
+                              inputAssignment*
+                            &quot;calculations:&quot; NEWLINE
+                              (ifStatement | variableAssignment)*
+                            end NEWLINE ;
+
+ifStatement              -&gt; (ifCompStatement | ifCondStatement) ;
+
+// Comparison statements have half of the condition after the if keyword and the remaining half
+// half on each new condition branch. It is similar in nature to a switch or match statement.
+ifCompStatement          -&gt; if IDENTIFIER &quot;:&quot; NEWLINE
+                            ( comparisonOperator term &quot;:&quot; NEWLINE
+                              variableAssignment* )*
+                            else &quot;:&quot; NEWLINE
+                              variableAssignment *
+                            end NEWLINE ;
+
+ifCondStatement          -&gt; if expression &quot;:&quot; NEWLINE
+                           ( else if expression &quot;:&quot; NEWLINE
+                            variableAssignment* )*
+                           else &quot;:&quot; NEWLINE
+                           variableAssignment*
+                           end NEWLINE ;
+
+variableAssignment      -&gt; variableProperties &quot;=&quot; ( expression | ifExpression | NEWELEMENT )
+                            descriptionShorthand? referenceShorthand? NEWLINE
+                            metadataAssignment* NEWLINE ;
+
+inputAssignment         -&gt; variableProperties &quot;=&quot; ( value | NEWELEMENT )
+                            descriptionShorthand? referenceShorthand? NEWLINE
+                            metadataAssignment* NEWLINE ;
+
+variableProperties      -&gt; ( IDENTIFIER ( &quot;&lt;&quot; MULTISYMBOL &quot;&gt;&quot; )?
+                            | IDENTIFIERSYMBOL ) unit ;
+
+metadataAssignment      -&gt; &quot;s:&quot; MULTISYMBOL NEWLINE
+                            | &quot;d:&quot; STRING
+                            | &quot;l:&quot; STRING
+                            | &quot;r:&quot; STRING ;
+
+IDENTIFIERSYMBOL        -&gt; &quot;@&quot; ALPHA+ ALPHANUM* IDENTIFIERSUBSCRIPT ;
+IDENTIFIERSUBSCRIPT     -&gt; &quot;_&quot; ALPHANUM+ ;
+
+descriptionShorthand    -&gt; string ;
+</code></pre>
+<p>Design notes:</p>
+<ul>
+<li><code>IDENTIFIERSYMBOL</code> is used for quickly creating variable identifiers that are defined only by a symbol.
+They can only consist of letters, numbers and valid underscores to signify subscripts.</li>
+</ul>
+<h2 id="expressions">Expressions</h2>
+<p>Expressions are the parts of statements that evaluate to a value.</p>
+<pre><code class="lang-ebnf">ifExpression            -&gt; (ifCompExpression | ifCondExpression) ;
+
+ifCondExpression        -&gt; if expression &quot;:&quot; NEWLINE
+                            expression NEWLINE
+                           ( else if expression &quot;:&quot; NEWLINE
+                            expression NEWLINE )*
+                           else &quot;:&quot; NEWLINE
+                           end NEWLINE ;
+
+ifCompExpression        -&gt; if IDENTIFIER &quot;:&quot; NEWLINE
+                            ( comparisonOperator term &quot;:&quot; NEWLINE
+                              expression NEWLINE )*
+                            else &quot;:&quot; NEWLINE
+                              expression NEWLINE
+                            end NEWLINE ;
+
+listExpression          -&gt; &quot;[&quot; (expression ( &quot;,&quot; expression )* )? &quot;]&quot; ;
+dictionaryExpression    -&gt; &quot;[&quot; keyValuePair ( &quot;,&quot; keyValuePair )* &quot;]&quot; ;
+keyValuePair            -&gt; ( value | identifier ) &quot;:&quot; expression ;
+
+expression              -&gt; logic_or ;
+logic_or                -&gt; logic_and ( &quot;or&quot; logic_and )* ;
+logic_and               -&gt; equality ( &quot;and&quot; equality )* ;
+equality                -&gt; comparison ( ( &quot;!=&quot; | &quot;==&quot; ) comparison )* ;
+comparison              -&gt; term ( ( &quot;&gt;&quot; | &quot;&gt;=&quot; | &quot;&lt;&quot; | &quot;&lt;=&quot; ) term )* ;
+term                    -&gt; factor ( ( &quot;-&quot; | &quot;+&quot; ) factor )* ;
+factor                  -&gt; power ( ( &quot;/&quot; | &quot;*&quot; ) power )* ;
+power                   -&gt; unary ( &quot;^&quot; unary )*
+unary                   -&gt; &quot;-&quot; unary | primary ;
+primary                 -&gt; value | call
+                            | IDENTIFIER | ELEMENTPROPERTY 
+                            | &quot;(&quot; expression &quot;)&quot;;
+call                    -&gt; identifier &quot;(&quot; positionalArguments &quot;)&quot; ;
+</code></pre>
+<h2 id="element-properties">Element properties</h2>
+<p>Element properties are variables that exist within an element.</p>
+<pre><code class="lang-ebnf">namedArguments          -&gt; namedArgument (&quot;,&quot; namedArgument)* ;
+positionalArguments     -&gt; argument (&quot;,&quot; argument)* ;
+namedArgument           -&gt; identifier &quot;:&quot; argument ;
+argument                -&gt; value | identifier ;
+NEWELEMENT              -&gt; IDENTIFIER (&quot;(&quot; (positionalArguments | namedArguments)? &quot;)&quot;) ;
+ELEMENTPROPERTY         -&gt; IDENTIFIER (&quot;.&quot; IDENTIFIER)* ;
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>You can't directly use an element's property without first assigning it to a variable.</li>
+</ul>
+<h2 id="units-and-values">Units and values</h2>
+<pre><code class="lang-ebnf">value                   -&gt; NUMBER unit? ;
+
+unit                    -&gt; &quot;{&quot; unitFactor &quot;}&quot; ;
+unitFactor              -&gt; unitPower ( ( &quot;/&quot; | &quot;*&quot; ) unitPower )* ;
+unitPower               -&gt; unitPrimary ( ( &quot;^&quot; ) (unitPrimary | NUMBER) )* ;
+unitPrimary             -&gt; &quot;(&quot; unitFactor &quot;)&quot; | UNITKEYWORD
+</code></pre>
+<h2 id="keywords">Keywords</h2>
+<p>Reserved words used in the language.</p>
+<pre><code class="lang-ebnf">IF                      -&gt; &quot;if&quot; ;
+ELSE                    -&gt; &quot;else&quot; ;
+END                     -&gt; &quot;end&quot; ;
+UNITKEYWORD             -&gt; &quot;m&quot; | &quot;mm&quot; | ... ; \\ Include all unit keywords
+</code></pre>
+<h2 id="lexical-grammar">Lexical grammar</h2>
+<p>Basic grammar used to lex the input.</p>
+<pre><code class="lang-ebnf">REFERENCE               -&gt; &lt;any char except &quot;{&quot; or &quot;}&quot;&gt;+ ;
+multisymbol             -&gt; SINGLESYMBOL+ ;
+SINGLESYMBOL            -&gt; &quot;{&quot; SINGLESYMBOL &quot;}&quot;
+                            | LATEXWORD (SUBSCRIPT? | SUPERSCRIPT?)* ;
+SUBSCRIPT               -&gt; &quot;_&quot; SINGLESYMBOL ;
+SUPERSCRIPT             -&gt; &quot;^&quot; SINGLESYMBOL ;
+
+IDENTIFIER              -&gt; ( ALPHA | &quot;_&quot; ) ( ALPHANUMERIC | &quot;_&quot; )* ;
+STRING                  -&gt; &quot;\&quot;&quot; &lt;any char except &quot;\&quot;&quot; or NEWLINE&gt;* &quot;\&quot;&quot; ;
+MULTILINESTRING         -&gt; &quot;\&quot;\&quot;\&quot;&quot; &lt;any char except &quot;\&quot;\&quot;\&quot;&quot;&gt;* &quot;\&quot;\&quot;\&quot;&quot; ;
+LATEXWORD               -&gt; (ALPHA | &quot;*&quot; | &quot;'&quot; )+ ;
+ALPHANUMERIC            -&gt; ALPHA | DIGIT ;
+ALPHA                   -&gt; &quot;a&quot; ... &quot;z&quot; | &quot;A&quot; ... &quot;Z&quot; ;
+
+COMMENT                 -&gt; &quot;//&quot; &lt;any char except NEWLINE&gt;* NEWLINE ;
+REPORT                  -&gt; &quot;///&quot; &lt;any char except NEWLINE&gt;* NEWLINE ;
+
+NUMBER                  -&gt; (FLOAT | INTEGER) EXPONENT? ; 
+EXPONENT                -&gt; (&quot;e&quot; | &quot;E&quot;) (&quot;+&quot; | &quot;-&quot; )? (FLOAT | INTEGER)
+FLOAT                   -&gt; DIGIT+ &quot;.&quot; DIGIT+ ;
+INTEGER                 -&gt; DIGIT+ ;
+DIGIT                   -&gt; &quot;0&quot; ... &quot;9&quot; ;
+BOOLEAN                 -&gt; &quot;true&quot; | &quot;false&quot; ;
+NEWLINE                 -&gt; &quot;\n&quot; | &quot;\r\n&quot; ;
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
