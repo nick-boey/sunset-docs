@@ -87,7 +87,7 @@
   "docs/user/user-guide.html": {
     "href": "docs/user/user-guide.html",
     "title": "User guide | sunset-docs",
-    "summary": "User guide Getting started Basic syntax Creating functions Other articles What is Sunset? Why Sunset? A comparison with Excel and Python"
+    "summary": "User guide Getting started The best way to get started with using the Sunset Language is to follow along with the tutorials below. These have been written. To get started with using the Sunset language, there are a Installation has instructions on how to install Sunset and the related tools, and how to set up your computer to start writing Sunset code. Getting started contains enough information to start writing some simple calculations. Elements is where you'll start to Other articles What is Sunset? Why Sunset? A comparison with Excel and Python"
   },
   "docs/user/variables.html": {
     "href": "docs/user/variables.html",
