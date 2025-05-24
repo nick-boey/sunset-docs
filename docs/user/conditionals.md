@@ -1,6 +1,7 @@
 ## Conditionals
 
-Conditions are expressions that evaluate to a `true` or `false` variable. They tend to use the following operators:
+Conditions are expressions that evaluate to a `true` or `false` variable. They can be used as either statements or expressions.
+They use the following operators:
 
 - Value comparisons:
   - `==` Equal to

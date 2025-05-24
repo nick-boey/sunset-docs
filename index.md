@@ -10,11 +10,11 @@ It aims to bring the power of programming languages to create complex re-usable 
 
 This site is structured into a [user guide](docs/user/user-guide.md) which contains tutorials on how to use the language, and [developer documentation](docs/dev/developer-documentation.md) which contains information on the design of the language and associated tooling.
 
-## What is Sunset (for non-programmers)
+## What is Sunset (for non-programmers)?
 
 Sunset is a simple programming language that has been carefully designed for people with little to no programming experience to be able to write high quality calculations that are reusable, reliable and beautifully presented.
 
-## What is Sunset (for programmers)
+## What is Sunset (for programmers)?
 
 Sunset is a strong, static typed functional programming language and associated tooling that has been designed for people with little to no programming experience. The language has multiple compilation targets, ranging from libraries that can be used to create custom user interfaces to PDFs that contain all of the resulting calculations.
 
