@@ -8,4 +8,4 @@
 - `Compiler` - Compiles the AST into simplified instruction files that flatten out references
 - `Environment` - Contains all compiled informatio
 
-See [this page](grammar.md) for more information the grammar of the Sunset Language.
+See [this page](development.md) for more information the grammar of the Sunset Language.
