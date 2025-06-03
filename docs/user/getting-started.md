@@ -6,7 +6,7 @@ This page describes the **Sunset Language**, a simplified programming language u
 
 Comments start with `//` and cause the remainder of a line to be ignored.
 
-```sunset
+```
 // This is a comment, the contents of which is ignored by the interpreter/compiler.
 x = 35 {mm}
 
@@ -43,7 +43,7 @@ the latter will resolve to `{kg m^2 / s^2}`.
 
 **Values** are numbers that are optionally followed by a unit. The following are valid values:
 
-```sunset
+```
 40          // This is a 'unitless' value
 12 {mm}
 35 {kN m}
@@ -52,14 +52,14 @@ the latter will resolve to `{kg m^2 / s^2}`.
 
 A space is not required between the number and the unit, but is preferred.
 
-```sunset
+```
 12 {mm}     // This is valid and preferred
 35{kN m}    // This is also valid but not preferred
 ```
 
 All commas are ignored when processing numbers, and `en` or `En` may be used to raise any number to the `n`th exponent.
 
-```sunset
+```
 12e5       // Equal to 1,200,000
 12e-2      // Equal to 0.12
 14,32.12   // Equal to 1,432.12 as all commas are ignored.
@@ -71,7 +71,7 @@ Variables are defined by assigning a variable or expression to a **name**. Names
 and can contain any combination of letters, numbers and
 underscores.
 
-```sunset
+```
 // Valid variable names
 length = 35 {mm}
 _duration = 2.5 {s}
@@ -94,7 +94,7 @@ below letters and a colon `:`. Each letter is for a specific piece of metadata.
 
 For example, the above variable may be annotated with metadata as follows:
 
-```sunset
+```
 bendingCapacity = 1500 {kNm}
     s: \phi M_{sx}
     d: The bending section capacity of the plate in the x axis.
@@ -120,7 +120,7 @@ width <b> = 150 {mm}
 
 If the symbol doesn't contain any spaces, it may be used as an alternative to the name in the following calculations.
 
-```sunset
+```
 width <b> = 150 {mm}
     d: The width of the plate. 
     
@@ -135,7 +135,7 @@ area <A> = width * thickness
 If a symbol can just be used as a name (i.e. it doesn't contain any invalid characters), it may be defined as a name by
 starting the name with `@`.
 
-```sunset
+```
 // Given a variable in which the name is not required:
 width <b> = 150 {mm}
 
@@ -157,7 +157,7 @@ Double quotation marks `"` may be used as shorthand for the description followin
 The order of the description and the reference do not matter, however convention is for the reference to be placed
 first.
 
-```sunset
+```
 // The following two definitions are equivalent,
 // with the second using the description definition shorthand
 
@@ -179,7 +179,7 @@ To perform calculations, simply use the following operators and functions to for
 - `sin(x)`, `cos(x)`, `tan(x)` for standard trigonometric functions.
 - `asin(x)`, `acos(x)`, `atan(x)` for standard inverse trigonometric functions
 
-```sunset
+```
 // Variable definitions with values
 
 width <b> = 150 {mm} 
